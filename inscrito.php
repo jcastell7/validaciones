@@ -56,7 +56,7 @@ function setCedula($cedula) {
 function setFacebook($facebook) {
     $this->facebook = $facebook;
 }
-function añadirBaseDatos($fb){
+function añadirBaseDatos($fb=false){
     if($fb){
     $this->database->insert("validacion",["nombre"=> $this->nombre,"correo"=> $this->correo,"cedula"=> $this->cedula,"facebook"=> $this->facebook, "id"=> $this->id]);
     }else{
