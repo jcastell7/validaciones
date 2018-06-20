@@ -1,3 +1,11 @@
+
+<?php 
+$nombre=$_POST["nombre"];
+$cedula=$_POST["cedula"];
+$correo=$_POST["correo"];
+$facebook=$_POST["facebook"];
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,13 +20,13 @@
 
 <body>
     <div class="contact-clean">
-        <form method="post">
+        <form action='index.php' method='post'>
             <h2 class="text-center">formulario</h2>
-            <div class="form-group"><label for="nombre">Nombre *</label><input class="form-control" type="text" name="nombre" required="" placeholder="Nombre" inputmode="latin-name"></div>
-            <div class="form-group"><label for="nombre">Correo electronico *</label><input class="form-control" type="text" name="email" required="" placeholder="Correo Electronico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" inputmode="email"></div>
-            <div class="form-group"><label for="nombre">Cedula*</label><input class="form-control" type="text" name="cedula" required="" placeholder="Cedula" pattern="[0-9]*" inputmode="numeric"></div>
-            <div class="form-group d-flex flex-column"><label for="nombre">facebook (opcional)</label>
-                <div class="d-flex"><label>https://www.facebook.com/</label><input class="form-control" type="text" name="facebook" placeholder="usuario facebook"></div>
+            <div class="form-group"><label for="nombre">Nombre *</label><input class="form-control" type="text" name="nombre" required="" placeholder="Nombre" inputmode="latin-name" id="nombre"></div>
+            <div class="form-group"><label for="correo">Correo electronico *</label><input class="form-control" type="text" name="correo" required="" placeholder="Correo Electronico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" inputmode="email" id="correo"></div>
+            <div class="form-group"><label for="cedula">Cedula*</label><input class="form-control" type="text" name="cedula" required="" placeholder="Cedula" pattern="[0-9]*" inputmode="numeric" id="cedula"></div>
+            <div class="form-group d-flex flex-column"><label for="nombre">facebook (opcional)<input type="checkbox" onclick="document.getElementById('facebook').disabled=this.checked;" name="check" id="check" value="1"></label>
+                <div class="d-flex"><label>https://www.facebook.com/</label><input class="form-control" type="text" name="facebook" placeholder="usuario facebook" id="facebook"></div>
             </div>
             <div class="form-group"><button class="btn btn-primary" type="submit">enviar</button></div>
         </form>
