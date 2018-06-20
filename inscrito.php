@@ -18,7 +18,7 @@ class inscrito {
         $this->correo = $correo;
         $this->cedula = $cedula;
         $this->facebook = $facebook;
-        $database = new Medoo([
+        $this->database = new Medoo([
             // required
             'database_type' => 'mysql',
             'database_name' => 'validacion',
@@ -26,7 +26,7 @@ class inscrito {
             'username' => 'root',
             'password' => '',
         ]);
-        $this->id = ($database->max("validacion", "id")) + 1;
+        $this->id = ($this->database->max("inscritos", "id")) + 1;
     }
 
     function getNombre() {
@@ -74,11 +74,9 @@ class inscrito {
         echo"<br>";
 
         if ($fb) {
-            $this->database->query("INSERT INTO `inscritos` (`nombre`, `correo`, `cedula`, `facebook`, `id`) VALUES ('juan', 'jtcp2703@gmail.com', '123456', NULL, '1');");
-            //$this->database->insert("inscritos", ["nombre" => $this->nombre, "correo" => $this->correo, "cedula" => $this->cedula, "facebook" => $this->facebook, "id" => $this->id]);
+            $this->database->insert("inscritos", ["nombre" => $this->nombre, "correo" => $this->correo, "cedula" => $this->cedula, "facebook" => $this->facebook, "id" => $this->id]);
         } else {
             $this->database->insert("inscritos", ["nombre" => $this->nombre, "correo" => $this->correo, "cedula" => $this->cedula, "id" => $this->id]);
-            //$this->database->insert("inscritos", ["nombre" => $this->nombre, "correo" => $this->correo, "cedula" => $this->cedula, "id" => $this->id]);
         }
     }
 
