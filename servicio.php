@@ -30,21 +30,23 @@ function comprobarDatos(){
     preg_match($patronCedula,$this->cedula ,$coincidenciasCC);
     preg_match($patronCorreo,$this->correo ,$coincidenciasCorreo);
     preg_match($patronFb,$this->facebook ,$coincidenciasfb);
-    if(!($coincidenciasNombre[0]=== $this->nombre)){
-        return "Su nombre co cumple los requisitos solicitados";
-    }if(!($coincidenciasCC[0]=== $this->cedula)){
+    if(!(in_array ($this->nombre, $coincidenciasNombre))){
+        return "El nombre ingresado no cumple los requisitos solicitados";
+    }else if(!(in_array ($this->cedula, $coincidenciasCC))){
         return "la cedula no cumple con los requisitos solicitados";
-    }if(!($coincidenciasCorreo[0]=== $this->correo)){
+    }else if(!(in_array ($this->correo, $coincidenciasCorreo))){
         return "el correo no cumple con los requisitos solicitados";
-    }if($this->checkbox==="seleccionado"){
-        if(!($coincidenciasfb[0]=== $this->facebook)){
+    }else if($this->checkbox==="seleccionado"){
+        if(!(in_array ($this->facebook, $coincidenciasfb)[0])){
             return "el facebook no cumple con los requisitos solicitados";
         }
-    }
+    }else{
     return true;
+    }
 }
 function agregarInscripcion(){
-    if ($this->comprobarDatos()){
+    $comprobacion=$this->comprobarDatos();
+    if ($comprobacion===TRUE){
         if($this->checkbox==="seleccionado"){
         $this->inscrito=new inscrito($this->nombre, $this->correo, $this->cedula,$this->facebook);
         }else{
@@ -53,7 +55,7 @@ function agregarInscripcion(){
         $this->inscrito->añadirBaseDatos($this->checkbox==="seleccionado");
     }
     else{
-        echo'<script>$(document).ready(Alert.warning("el elemento no pudo ser agregado, por favor verifique los datos", "Error"););</script>';
+        echo"<script>Alert.warning('$comprobacion', 'Error');</script>";
     }
 }
 
